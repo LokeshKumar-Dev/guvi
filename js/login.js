@@ -1,4 +1,40 @@
 $ ('document').ready (function () {
+  var storedToken = localStorage.getItem('token');
+  
+  // Sending JWT token to the PHP file through AJAX request
+  if(storedToken){
+    $.ajax({
+        type: 'POST',
+        url: './php/profile.php',
+        data: {token: storedToken},
+
+        success: function(response) {
+            response = JSON.parse(response);
+            if (response["status"] == 200) {
+
+              //Redirects to HOME
+              function timeoutFunc () {
+                window.location.href = './profile.html';
+              }
+              setTimeout (timeoutFunc, 2000);
+                
+            } else {
+                //Internal Server Error (Some other Issues)
+                $ ('#error').fadeIn (1000, function () {
+                    $ ('#error').html (
+                    '<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span>   ' +
+                        data +
+                        ' !</div>'
+                    );
+                    $ ('#btn-submit').html (
+                    '<span class="glyphicon glyphicon-log-in"></span>   Login'
+                    );
+            });
+            }
+        }
+    });
+  }
+
   $ ('#login').validate ({
     rules: {
       user_email: {
@@ -28,8 +64,7 @@ $ ('document').ready (function () {
       },
       success: function (response) {
         //EMAIL or USER already EXITS
-        console.log('res', JSON.parse(response));
-        console.log(response1)
+        response = JSON.parse(response);
         if (response["status"] == 200) {
           //Successfully Registered
           $ ('#btn-submit').html (

@@ -1,6 +1,8 @@
 <?php
 // Include the required JWT library
 require_once '../vendor/autoload.php';
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
@@ -13,11 +15,13 @@ $secret_key = $_SESSION["secret"];
 
 try {
     // Attempt to decode the JWT token
-    $decoded_payload = \Firebase\JWT\JWT::decode($token, $secret_key);
+    $decoded_payload = JWT::decode($token, new Key($secret_key, 'HS256'));
 
     $id = $decoded_payload->uId;
 
-    echo 'User ID: ' . $id . '<br>';
+    $data = ['status' => 200, 'uId' => $id];
+    echo json_encode($data);
+    exit;
 } catch (Exception $e) {
     echo 'Error: ' . $e->getMessage();
 }
