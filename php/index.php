@@ -1,11 +1,15 @@
 <?php
+require '../vendor/autoload.php';
 
-session_start();
+// Connect to Redis using the default settings
+$redis = new Predis\Client();
+$secretKey = $redis->get('key');
 
-//Secret Key for JWT sign
-$_SESSION["secret"] = "kbCf]w*mScZ>ARbzCu7q?^KBpzFzH1";
-
-$mysqli = require_once __DIR__ . "/database.php";
+if (!$secretKey) {
+    //Secret Key for JWT sign
+    $redis->set('key', "kbCf]w*mScZ>ARbzCu7q?^KBpzFzH1");
+    // $redis->expire('user:123', 3600);
+}
 
 header('Location: ./../login.html');
-    ?>
+?>

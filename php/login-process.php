@@ -8,6 +8,8 @@ header("Access-Control-Allow-Methods: POST");
 $is_invalid = false;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Connect to Redis using the default settings
+    $redis = new Predis\Client();
 
     $mysqli = require_once __DIR__ . "/database.php";
 
@@ -20,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     $email = urldecode($_POST["user_email"]);
 
+    //SQL
     $stmt->bind_param("s", $email);
     $stmt->execute();
 
@@ -38,8 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             );
 
             //Secret Key 
-            session_start();
-            $secret_key = $_SESSION["secret"];
+            $secret_key = $redis->get('key');
 
             // Generate the JWT token to sign the JWT
             $jwt_token = \Firebase\JWT\JWT::encode($payload, $secret_key, 'HS256');

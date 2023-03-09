@@ -1,5 +1,7 @@
 {
     "require": {
-        "firebase/php-jwt": "^6.4"
+        "firebase/php-jwt": "^6.4",
+        "predis/predis": "^2.1",
+        "mongodb/mongodb": "^1.12"
     }
 }

@@ -1,27 +1,25 @@
 <?php
-// Include the required JWT library
-require_once '../vendor/autoload.php';
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
+$collections = require_once __DIR__ . "/mongoDB.php";
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST");
+// Insert user profile data into MongoDB
+$result = $collection->insertOne([
+    'username' => 'john_doe',
+    'first_name' => 'John',
+    'last_name' => 'Doe',
+    'email' => 'john_doe@example.com'
+]);
 
-$token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1SWQiOjIzLCJuYW1lIjoidXNlcjIiLCJleHAiOjE2Nzg2Mjg4MzF9.114QchR5vJbsX6afGkugtJEjNrtFNBSSeOfbjYp1LWo';
-
-//Secret Key 
-session_start();
-$secret_key = $_SESSION["secret"];
-
-echo $secret_key;
-try {
-    // Attempt to decode the JWT token
-    $decoded_payload = JWT::decode($token, new Key($secret_key, 'HS256'));
-    print_r($decoded_payload);
-    $id = $decoded_payload->uId;
-
-    echo 'User ID: ' . $id . '<br>';
-} catch (Exception $e) {
-    echo 'Error: ' . $e->getMessage();
+// Check if the insert was successful
+if ($result->getInsertedCount() > 0) {
+    echo "Document inserted successfully";
+    echo $result->getInsertedCount();
+} else {
+    echo "Document not inserted";
 }
+
+// // Retrieve user profile data from MongoDB
+// $userProfileData = $collection->findOne([
+//     'username' => 'john_doe'
+// ]);
+
 ?>
