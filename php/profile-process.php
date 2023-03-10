@@ -34,8 +34,7 @@ try {
 
     $userUpdate = $collection->updateOne(array("uId" => $id), $document);
     $result = $collections->findOne(array("uId" => $id));
-    echo $id;
-    echo json_encode($result);exit;
+    
     if ($userUpdate->getModifiedCount() > 0) {
         $result = $collections->findOne(array("uId" => $id));
 
