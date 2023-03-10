@@ -5,8 +5,6 @@ require_once '../vendor/autoload.php';
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 
-$is_invalid = false;
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Connect to Redis using the default settings
     $redis = new Predis\Client();
@@ -52,10 +50,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo json_encode($data);
             exit;
         }
+        $data = ['status' => "300", 'message' => "Invalid Credentials"];
+        echo json_encode($data);
+        exit;
     }
 
-    $is_invalid = true;
-    $data = ['status' => "400", 'msg ' => "User is not signed in"];
+    $data = ['status' => "400", 'message' => "User is not signed in"];
 
     echo json_encode($data);
 }

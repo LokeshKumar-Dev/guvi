@@ -4,16 +4,101 @@
 <head>
     <title>Profile</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    
+
+    <!-- AJAX Dep -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <!-- MATERIALIZE CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css" rel="stylesheet"
+        id="bootstrap-css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/profile.css">
+
+    <!-- Script -->
     <script src="./js/profile.js" defer></script>
 </head>
 
 <body>
 
-    <h1>Profile</h1>
-    <h2 id="uId"></h2>
+    <div class="container">
+        <div class="row d-center">
+            <div class="col s12 m12">
+                <div class="card ">
+
+                    <div class="row" style="height: 100%;margin: 0;">
+                        <div class="card-1 col s12 m4 l3">
+                            <!-- <img src="https://materializecss.com/images/yuna.jpg" alt="" class="circle card-image"> -->
+                            <!-- <div class="d-center"> -->
+                            <!-- <div class="file-field input-field">
+                                <div
+                                    class="btn btn-small file-btn white-text waves-light waves-effect btn-bg right-align">
+                                    <span>Choose File</span>
+                                    <input type="file">
+                                </div>
+                            </div>
+                            <button class="btn btn-small white-text waves-light waves-effect btn-bg right-align"
+                                type="submit" name="action">Upload
+                                <i class="material-icons right">add_a_photo</i>
+                            </button> -->
+                            <!-- </div> -->
+                            <h5 class="name" id="name">Name</h5>
+                            <button class="btn btn-small white-text red waves-light waves-effect right-align"
+                                type="submit" name="action" id="logout-btn">Logout
+                            </button>
+                        </div>
+
+
+                        <div class="card-2 col s12 m8 l9">
+                            <div class="row input-col">
+                                <form class="col s12 d-flex" id="profileForm">
+                                    <div class="row mb-10">
+                                        <div class="input-field col s6">
+                                            <input placeholder="Placeholder" id="first_name" type="text"
+                                                class="validate">
+                                            <label for="first_name">First Name</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input id="last_name" type="text" class="validate">
+                                            <label for="last_name">Last Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-10">
+                                        <div class="input-field col s12">
+                                            <input disabled id="disabled" type="text" class="validate">
+                                            <label id="email" for="disabled">Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-10">
+                                        <div class="input-field col m10 s12 date-field">
+                                            <p class="date-label">Birth Date:</p>
+                                            <input id="birthday" type="Date" class="datepicker">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-10">
+                                        <div class="input-field col s12">
+                                            <input id="number" type="text" class="validate">
+                                            <label for="number">Phone Number</label>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-small white-text waves-light waves-effect btn-bg right-align"
+                                        type="submit" name="action" style="align-self: end;">Update
+                                        <i class="material-icons right"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>

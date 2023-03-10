@@ -20,8 +20,8 @@ $ ('document').ready (function () {
                 
             } else {
                 //Internal Server Error (Some other Issues)
-                $ ('#error').fadeIn (1000, function () {
-                    $ ('#error').html (
+                $ ('#error-msg').fadeIn (1000, function () {
+                    $ ('#error-msg').html (
                     '<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span>   ' +
                         data +
                         ' !</div>'
@@ -51,24 +51,25 @@ $ ('document').ready (function () {
   /* handle form login */
   function loginForm () {
     var data = $("#login").serialize();
-
+    console.log(data)
     $.ajax ({
       type: 'POST',
       url: './php/login-process.php',
       data: data,
       beforeSend: function () {
-        $ ('#error').fadeOut ();
+        $ ('#error-msg').fadeOut ();
         $ ('#btn-submit').html (
-          '<span class="glyphicon glyphicon-transfer"></span>   sending ...'
+          '<div class="preloader-wrapper active" style="height:30px;width:30px;><div class="spinner-layer small spinner-red-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch">  <div class="circle"></div></div><div class="circle-clipper right">  <div class="circle"></div></div>  </div></div>'
         );
       },
       success: function (response) {
         //EMAIL or USER already EXITS
         response = JSON.parse(response);
+        console.log(response)
         if (response["status"] == 200) {
           //Successfully Registered
           $ ('#btn-submit').html (
-            '<img src="ajax-loader.gif" />   Loggin in wait ...'
+            '<div class="preloader-wrapper active" style="height:30px;width:30px;"><div class="spinner-layer small spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch">  <div class="circle"></div></div><div class="circle-clipper right">  <div class="circle"></div></div>  </div></div>'
           );
 
           //Redirects to HOME
@@ -77,13 +78,13 @@ $ ('document').ready (function () {
             console.log("to store", response["token"], response)
             window.location.href = './profile.html';
           }
-          setTimeout (timeoutFunc, 2000);
+          setTimeout (timeoutFunc, 3000);
         } else {
           //Internal Server Error (Some other Issues)
-          $ ('#error').fadeIn (1000, function () {
-            $ ('#error').html (
+          $ ('#error-msg').fadeIn (1000, function () {
+            $ ('#error-msg').html (
               '<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span>   ' +
-                data +
+                response["message"] +
                 ' !</div>'
             );
             $ ('#btn-submit').html (

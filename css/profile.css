@@ -1,0 +1,123 @@
+.card {
+    height: 80vh;
+    min-height: max-content;
+    width: 70vw;
+    padding: 1.5rem 1rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.card-1 {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 0 !important;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+    border-right: 2px solid #80808033;
+}
+
+.card-1>* {
+    margin-bottom: 1rem !important;
+}
+
+.card-2 {
+    height: 80%;
+}
+
+.card-image {
+    width: 80%;
+}
+
+.reg {
+    font-size: .8rem;
+    margin-top: 0;
+}
+
+.btn-row {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.btn-bg {
+    background-color: #20a0c3c4 !important;
+}
+
+.input-col {
+    margin: 1rem 2rem !important;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+.date-label {
+    margin: 0;
+    margin-right: 0px;
+    margin-right: .5rem;
+    color: #9e9e9e;
+    font-size: .9rem;
+}
+
+.datepicker {
+    margin: 0;
+}
+
+.date-field {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.d-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    margin-left: 2rem;
+}
+
+.file-btn {
+    display: flex;
+    height: 2rem!important;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 615px) {
+    .card{
+        height: max-content;
+    }
+    .card-1{
+        height: min-content;
+    }
+}
+@media screen and (max-width: 528px) {
+    .card{
+        height: max-content;
+    }
+    .card-1{
+        height: min-content;
+    }
+    .card > .row{
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 488px) {
+    .container-child {
+        width: 100%;
+        margin-top: 50px;
+    }
+}

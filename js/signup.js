@@ -57,7 +57,7 @@ $ ('document').ready (function () {
     var data = $ ('#signup').serialize ();
     $.ajax ({
       type: 'POST',
-      url: './signup-process.php',
+      url: './php/signup-process.php',
       data: data,
       beforeSend: function () {
         $ ('#error').fadeOut ();
@@ -80,13 +80,13 @@ $ ('document').ready (function () {
         } else if (response == 1) {
           //Successfully Registered
           $ ('#btn-submit').html (
-            '<img src="ajax-loader.gif" />   Signing Up ...'
+            'Signing Up ... <div class="preloader-wrapper active" style="height:30px;width:30px;><div class="spinner-layer small spinner-red-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch">  <div class="circle"></div></div><div class="circle-clipper right">  <div class="circle"></div></div>  </div></div>'
           );
 
           //Redirects to HOME
           console.log ('timeout 0 ');
           function timeoutFunc () {
-            window.location.href = 'profile.php';
+            window.location.href = './login.html';
           }
           setTimeout (timeoutFunc, 3000);
         } else {
